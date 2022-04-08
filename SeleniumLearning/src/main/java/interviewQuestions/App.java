@@ -1,4 +1,4 @@
-package selenium.SeleniumLearning;
+package interviewQuestions;
 
 /**
  * Hello world!
