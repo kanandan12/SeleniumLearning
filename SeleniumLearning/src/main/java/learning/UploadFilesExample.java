@@ -28,8 +28,9 @@ public class UploadFilesExample {
 		//Open Leafground Upload Files Page
 		driver.get("http://leafground.com/pages/upload.html");
 		
+		
 		// Explicit wait
-		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20,1));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30,1));
 				
 		// Click Choose File button
 		WebElement uploadFileButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("filename")));
@@ -43,11 +44,9 @@ public class UploadFilesExample {
 		//clickAndHold(a).build().perform();
 		a.click();*/
 		
-		
-		
 		// Paste the file loaction 
-		String fileName = "C:\\Users\\kamal\\Downloads\\testleaf.xlsx";
-		
+		String fileName = "C:\\Testleaf\\testleaf.xlsx";
+						
 		//StringSelection is used to convert string to plain text 
 		StringSelection selection = new StringSelection(fileName);
 		
@@ -61,7 +60,8 @@ public class UploadFilesExample {
 		robot.keyPress(KeyEvent.VK_ENTER);
 		robot.keyRelease(KeyEvent.VK_ENTER);
 		
-		 
+		driver.close();
+		
 	}
 
 }
