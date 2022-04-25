@@ -31,7 +31,6 @@ public class UploadFileExample {
 		// Click Choose File button
 		WebElement uploadFileButton = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("uploadfile_0")));
 		
-
         // enter the file path onto the file-selection input field
         uploadFileButton.sendKeys("C:\\Testleaf\\testleaf.xlsx");
 
