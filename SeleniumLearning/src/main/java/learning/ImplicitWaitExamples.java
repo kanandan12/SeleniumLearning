@@ -19,7 +19,6 @@ public class ImplicitWaitExamples {
 		driver.manage().window().maximize();
 		
 		// Implicitly Wait
-		//driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
 				
 		// Open the php travels login page						
