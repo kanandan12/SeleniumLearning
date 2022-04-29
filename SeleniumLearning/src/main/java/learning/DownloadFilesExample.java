@@ -30,7 +30,7 @@ public class DownloadFilesExample {
 		Thread.sleep(300);
 		
 		//Find the download files
-		File fileloaction = new File("C:\\Users\\kamal\\Downloads");
+		File fileloaction = new File("C:\\Users\\koush\\Downloads");
 		File[] TotalFiles = fileloaction.listFiles();
 		
 		for (File file : TotalFiles) {
