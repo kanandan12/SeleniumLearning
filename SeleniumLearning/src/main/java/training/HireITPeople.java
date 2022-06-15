@@ -1,17 +1,21 @@
 package training;
 
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.Duration;
 import java.util.List;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import io.opentelemetry.exporter.logging.SystemOutLogExporter;
 
 public class HireITPeople {
 
-	public static void main(String[] args) throws InterruptedException {
+	public static void main(String[] args) throws InterruptedException, IOException {
 		// TODO Auto-generated method stub
 		
 		// Launch Chrome Browser
@@ -20,38 +24,67 @@ public class HireITPeople {
 		
 		// Maximize the browser
 		driver.manage().window().maximize();
-						
-		//Open Leafground Calendar Page
-		// Using navigate method.
-		driver.get("https://www.hireitpeople.com/resume-database/67-quality-assurance-qa-resumes/68105-qa-automation-engineer-rest-api-tester-resume-nce-confidential");
+		
+		// Implicitly Wait
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(90));
 				
+		//Create File In Desktop  
+		String TestFile = "C:\\Users\\koush\\OneDrive\\Desktop\\Temp.txt";
+		File FC = new File(TestFile);//Created object of java File class.
+		FC.createNewFile();//Create file.
+		  
+		//Writing In to file.
+		//Create Object of java FileWriter and BufferedWriter class.
+		FileWriter FW = new FileWriter(TestFile);
+		BufferedWriter BW = new BufferedWriter(FW);
+		
+		//Open Hire IT People Web Page
+		// Using get method.
+		driver.get("https://www.hireitpeople.com/resume-database/67-quality-assurance-qa-resumes/68105-qa-automation-engineer-rest-api-tester-resume-nce-confidential");
+
+		// Wait for 3 seconds
 		Thread.sleep(3000);
-		//WebElement singlePostBody = driver.findElement(By.className("single-post-body"));
-		//String strBodyName = singlePostBody.getText();
-		//System.out.println(strBodyName);
 		
-		//List<WebElement> paragraph = driver.findElements(By.xpath("//html//body//div[3]//section[2]//div//div//div//div//div[2]/Following::p"));
-		List<WebElement> webParagraph = driver.findElements(By.xpath("//div[@class='single-post-body']//parent::p"));
-		int paragraph = webParagraph.size();
-		System.out.println(paragraph);
-		
-		for (int i=1; i<paragraph; i++) {
-			WebElement liElement = driver.findElement(By.xpath("//div[@class='single-post-body']//child::li["+i+"]"));
-			String strLiElement = liElement.getText();
-			System.out.println(strLiElement);	
+		List<WebElement> childParagraph = driver.findElements(By.xpath("//*[@class='single-post-body']//parent::p"));
+		int childPara = childParagraph.size();
+		System.out.println("Total Web Paragraph: "+childPara);
+				
+		for(int i=1; i<=childPara; i++){
+			
+			WebElement childParagraphElement = driver.findElement(By.xpath("//*[@class='single-post-body']/p["+i+"]"));
+			String strPragraphElement = i+": "+childParagraphElement.getText();
+			System.out.println(strPragraphElement);	
+			BW.write(strPragraphElement); //Writing In To File.
+			BW.newLine();//To write next string on new line.
 		}
 		
-		//for(int i=1; i<paragraph; i++) {
-		//	WebElement liElement = driver.findElement(By.xpath("//div[@class='single-post-body']//child::li["+i+"]"));
-		//	strLiElement = liElement.getText();
-		//	System.out.println(strLiElement);
-		//}
+		System.out.println("\n-------------------------------------------------------------\n");
+		BW.write("\n-------------------------------------------------------------\n"); //Writing In To File.
+		BW.newLine();//To write next string on new line.
 		
+		List<WebElement> childULParagraph = driver.findElements(By.xpath("//*[@class='single-post-body']//parent::ul"));
+		int childUL = childULParagraph.size();
+		System.out.println("Child UL Paragraph: "+childUL);
 		
-		
-		
-		
-		
+		for(int i=1; i<=childUL; i++){
+			List<WebElement> LiElement = driver.findElements(By.xpath("//*[@class='single-post-body']/ul["+i+"]/li"));
+			System.out.println(LiElement.size());
+			
+			for (int j = 1; j<=LiElement.size(); j++) {
+				WebElement childliElement = driver.findElement(By.xpath("//*[@class='single-post-body']/ul["+i+"]/li["+j+"]"));
+				String liname = j+": "+childliElement.getText();
+				System.out.println(liname);
+				
+				BW.write(liname); //Writing In To File.
+				BW.newLine();//To write next string on new line.
+			}	
+			
+		}
+				
+		//close Browser
+		//driver.close();
+		BW.write("-----------------------------------------------------------------------\n"); //Writing In To File.
+		BW.close();
 		
 
 	}
