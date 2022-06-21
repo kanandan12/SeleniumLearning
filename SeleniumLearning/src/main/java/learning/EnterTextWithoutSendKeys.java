@@ -1,5 +1,7 @@
 package learning;
 
+import java.time.Duration;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -17,14 +19,17 @@ public class EnterTextWithoutSendKeys {
 						
 		// Maximize the browser
 		driver.manage().window().maximize();
+		
+		//implicit wait
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(20));
 						
 		//Open Leaf ground Edit web page
 		driver.get("http://leafground.com/pages/Edit.html");
 		Thread.sleep(2000);
 		
-		//Java Executor to Enter Text without sendKeys Method
+		//Java Script Executor to Enter Text without sendKeys Method
 		JavascriptExecutor j = (JavascriptExecutor)driver;
-		j.executeScript ("document.getElementById('email').value='mobileapptestfb@gmail.com'");
+		j.executeScript("document.getElementById('email').value='mobileapptestfb@gmail.com'");
 		WebElement l = driver.findElement(By.id("email"));
 		String s = l.getAttribute("value");
 		System.out.println("Value entered is: " + s);
