@@ -40,8 +40,9 @@ public class HireITPeople {
 		
 		//Open Hire IT People Web Page
 		// Using get method.
-		driver.get("https://www.hireitpeople.com/resume-database/67-quality-assurance-qa-resumes/68105-qa-automation-engineer-rest-api-tester-resume-nce-confidential");
-
+		//driver.get("https://www.hireitpeople.com/resume-database/67-quality-assurance-qa-resumes/68105-qa-automation-engineer-rest-api-tester-resume-nce-confidential");
+		driver.get("https://www.hireitpeople.com/resume-database/82-quality-assurance-resumes/69195-api-test-engineer-resume");
+		
 		// Wait for 3 seconds
 		Thread.sleep(3000);
 		
